@@ -1,3 +1,4 @@
+import './Search.css'
 import { useState, useEffect, useRef } from 'react';
 
 const DEBOUNCE_DELAY = 800;
@@ -46,13 +47,9 @@ function Search({ onSearch = () => { }, isloading = false }) {
         setSearchTerm(newTerm);
     };
 
-    const handleTypeChange = (e) => {
-        const newType = e.target.value;
-        setSearchType(newType);
+    const handleTypeChange = (tipo) => {
+        setSearchType(tipo);
         setSearchTerm(''); 
-        if (searchInputRef.current) {
-            searchInputRef.current.focus(); 
-        }
     };
 
     const placeholderText = searchType === 'people'
@@ -60,50 +57,38 @@ function Search({ onSearch = () => { }, isloading = false }) {
         : "e.g. A New Hope, The Empire Strikes Back";
 
     return (
-        <div className="search-container">
-            <h2>What are you searching for?</h2>
-
-            <div>
-                <div>
-                    <input
-                        type="radio"
-                        id="people"
-                        name="searchType"
-                        value="people"
-                        checked={searchType === 'people'}
-                        onChange={handleTypeChange}
-                    />
-                    <label htmlFor="people">People</label>
-                </div>
-
-                <div>
-                    <input
-                        type="radio"
-                        id="movie"
-                        name="searchType"
-                        value="movie"
-                        checked={searchType === 'movie'}
-                        onChange={handleTypeChange}
-                    />
-                    <label htmlFor="movie">Movies</label>
-                </div>
-            </div>
-
-            <div>
-                <input
-                    type="text"
-                    placeholder={placeholderText}
-                    value={searchTerm}
-                    ref={searchInputRef}
-                    autoFocus
-                    onChange={handleTermChange}
-                />
-            </div>
-
-            <button disabled={isSearchDisabled || isloading} onClick={handleSearch}>
-                {isloading ? 'Searching...' : 'Search'}
-            </button>
+        <section className="search-section">
+        <h2 className="search-title">What are you searching for?</h2>
+        
+        <div className="search-options">
+            <label className="radio-group">
+                <div className={searchType === 'people' ? 'radio-input checked' : 'radio-input'} onClick={e => handleTypeChange('people')}></div>
+                <span className="radio-label">People</span>
+            </label>
+            <label className="radio-group">
+                <div className={searchType === 'movies' ? 'radio-input checked' : 'radio-input'} onClick={e => handleTypeChange('movies')}></div>
+                <span className="radio-label">Movies</span>
+            </label>
         </div>
+
+        <input 
+            type="text" 
+            className="search-input" 
+            placeholder={placeholderText}
+            value={searchTerm}
+            onChange={handleTermChange}
+            ref={searchInputRef}/>
+
+        <button className="search-button" onClick={handleSearch} disabled={isSearchDisabled}>
+            Search
+        </button>
+    </section>
+
+
+        
+        
+        
+        
     );
 }
 

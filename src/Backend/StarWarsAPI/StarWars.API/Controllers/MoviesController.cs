@@ -9,15 +9,15 @@ namespace StarWarsApi.Controllers
     [ApiController]
     [Route("api/[controller]")]
     [Produces("application/json")]
-    public class MovieController : ControllerBase
+    public class MoviesController : ControllerBase
     {
         private readonly IMovieService _movieService;
-        private readonly ILogger<MovieController> _logger;
+        private readonly ILogger<MoviesController> _logger;
         private readonly MovieMetricsService _metrics;
 
-        public MovieController(
+        public MoviesController(
             IMovieService movieService,
-            ILogger<MovieController> logger,
+            ILogger<MoviesController> logger,
             MovieMetricsService metrics)
         {
             _movieService = movieService;

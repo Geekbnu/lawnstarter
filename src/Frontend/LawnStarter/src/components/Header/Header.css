@@ -1,0 +1,15 @@
+.header {
+    text-align: center;
+    margin-bottom: 0;
+    height: 60px;
+    background-color: #fff;
+    border-bottom: 1px solid #dadada;
+    padding-top: 10px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: #22c55e;
+    text-decoration: none;
+}

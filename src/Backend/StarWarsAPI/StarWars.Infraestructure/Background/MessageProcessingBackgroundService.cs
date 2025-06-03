@@ -12,7 +12,7 @@ public class MessageProcessingBackgroundService : BackgroundService
     private readonly ILogger<MessageProcessingBackgroundService> _logger;
     private readonly IServiceScopeFactory _serviceScopeFactory;
     private readonly IMessageQueue _messageQueue;
-    private readonly TimeSpan _executionInterval = TimeSpan.FromMinutes(3);
+    private readonly TimeSpan _executionInterval = TimeSpan.FromMinutes(5);
 
     public MessageProcessingBackgroundService(
         ILogger<MessageProcessingBackgroundService> logger,
@@ -95,7 +95,7 @@ public class MessageProcessingBackgroundService : BackgroundService
 
                 if (metrics != null)
                 {
-                    await metrics.DeleteAllMetricsAsync();
+                    await metrics.ResetMetrics();
                 }
 
                 processedCount++;

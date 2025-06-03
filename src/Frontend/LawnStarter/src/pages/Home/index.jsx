@@ -1,12 +1,11 @@
 import StarWarsSearch from "../../components/StarWarsSearch/StarWarsSearch";
 
-
 function Home() {
 
   return (
-    <div>
-      <StarWarsSearch/>
-    </div>
+    <>
+      <StarWarsSearch />
+    </>
   );
 }
 

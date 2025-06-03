@@ -43,7 +43,7 @@ internal class Program
     private static void ConfigureMongoDB(WebApplicationBuilder builder)
     {
         string mongoConnectionString = builder.Configuration.GetConnectionString("MongoDB")
-            ?? "mongodb://lawnstarter:lawnstarter@localhost:27017/admin";
+            ?? "mongodb://mongouserdatabase:chrmd2025@mongodb:27017/swstarterdb?authSource=admin";
 
         string mongoDatabaseName = builder.Configuration["MongoDB:DatabaseName"] ?? "admin";
 
@@ -176,7 +176,7 @@ internal class Program
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Star Wars API v1"));
         }
 
-        // Pipeline de requisição
+        // Pipeline de requisiï¿½ï¿½o
         app.UseHttpsRedirection();
         app.UseAuthorization();
         app.UseHttpMetrics();

@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { SearchMovieSwapiService } from "../../services/SearchMovieSwapiService";
 import { useState, useEffect, React } from "react";
+import './Movie.css';
 
 
 function Movie() {
@@ -24,27 +25,36 @@ function Movie() {
   }, []);
 
   return (
-    <div>
-      <h1>{data.title}</h1>
-      <h2>Opening Crawl</h2>
-      <p>{data.opening_crawl}</p>
-      
+    <div className="character-details">
+      <h1 className="character-name">{data.title}</h1>
+
+      <div className="details-grid">
+        <div className="details-section" style={{ whiteSpace: 'pre-line' }}>
+          <h2 className="section-title">Opening Crawl</h2>
+            <p>{data.opening_crawl}</p>
+        </div>
+
+        <div className="details-section">
+          <h2 className="section-title">Characters</h2>
+
+          <div className="detail-item">
+
+            {data.characters && data.characters.length > 0 ?
+              data.characters
+                .map(item => (
+                  <Link to={`/person/${item.uid}`} key={item.uid} className="movie-link">
+                    {item.name}
+                  </Link>
+                ))
+                .reduce((prev, curr) => [prev, ", ", curr])
+              : ("No movies found")}
+          </div>
+        </div>
+      </div>
+
       <Link to={`/`}>
-        <button>Back to Search</button>
+        <button className='back-button'>Back to Search</button>
       </Link>
-      
-      <h2>Characters</h2>
-      {data.characters && data.characters.length > 0 ?
-        data.characters
-          .map(item => (
-            <Link to={`/person/${item.uid}`} key={item.uid}>
-              {item.name}
-            </Link>
-          ))
-          .reduce((prev, curr) => [prev, ", ", curr])
-        : ("No characters found")}
-
-
     </div>
   );
 }

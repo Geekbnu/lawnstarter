@@ -52,11 +52,10 @@ function StarWarsSearch() {
     };
 
     return (
-        <div>
-            <h1>Star Wars Search</h1>
+        <>
             <Search onSearch={handleSearch} isloading={loading} />
             {<Results data={data} error={error} isLoading={loading} />}
-        </div>
+        </>
     );
 }
 

@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarWars.Infraestructure", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarWars.Services", "StarWars.Services\StarWars.Services.csproj", "{F73F1C22-57DF-463A-B8BD-ABF09CAADE49}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarWars.Tests", "StarWars.Tests\StarWars.Tests.csproj", "{D1AA942C-047D-4ABA-B50E-A75473E3971A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{F73F1C22-57DF-463A-B8BD-ABF09CAADE49}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F73F1C22-57DF-463A-B8BD-ABF09CAADE49}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F73F1C22-57DF-463A-B8BD-ABF09CAADE49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1AA942C-047D-4ABA-B50E-A75473E3971A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1AA942C-047D-4ABA-B50E-A75473E3971A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1AA942C-047D-4ABA-B50E-A75473E3971A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1AA942C-047D-4ABA-B50E-A75473E3971A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

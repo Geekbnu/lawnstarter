@@ -1,0 +1,103 @@
+.search-section {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    border: 1px solid #dadada;
+    width: 500px;
+}
+
+.search-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #383838;
+    margin-bottom: 1.5rem;
+}
+
+.search-options {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.radio-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+.radio-input {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #e5e7eb;
+    border-radius: 50%;
+    position: relative;
+}
+
+.radio-input.checked {
+    border-color: #22c55e;
+    background-color: #22c55e;
+}
+
+.radio-input.checked::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 6px;
+    height: 6px;
+    background-color: white;
+    border-radius: 50%;
+}
+
+.radio-label {
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.search-input {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    border: 2px solid #c4c4c4;
+    border-radius: 8px;
+    font-size: 18px;
+    margin-bottom: 1.5rem;
+    color: #383838;
+    font-weight: 600;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #383838;
+}
+
+.search-input::placeholder {
+    color: #c4c4c4;
+}
+
+
+.search-button {
+    width: 100%;
+    padding: 0.870rem 1.5rem;
+    background-color: #0AB463;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.search-button:hover {
+    background-color: #16a34a;
+}
+
+
+.search-button:disabled {
+    background-color: #c4c4c4;
+    cursor: not-allowed;
+}
+

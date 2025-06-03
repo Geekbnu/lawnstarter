@@ -118,13 +118,10 @@ namespace StarWarsApi.Metric
         }
 
 
-        public async Task<bool> DeleteAllMetricsAsync()
+        public async Task<bool> ResetMetrics()
         {
             try
             {
-                //var url = $"{_victoriaMetricsUrl}/api/v1/admin/tsdb/delete_series?match[]="+"{__name__ !=\"\"}";
-                //var response = await _httpClient.PostAsync(url, null);
-
                 InitializeMetrics();
 
                 return true;

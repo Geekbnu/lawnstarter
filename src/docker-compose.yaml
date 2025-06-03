@@ -1,0 +1,85 @@
+services:
+  frontend:
+    build:
+      context: ./Frontend  
+      dockerfile: Dockerfile 
+    ports:
+      - "3000:80"          
+    container_name: SWStarter-Frontend 
+    restart: unless-stopped
+    networks:
+      - app-network
+  
+  backend:
+    build:
+      context: ./Backend
+      dockerfile: ./StarWarsAPI/StarWars.API/Dockerfile
+    ports:
+      - "8080:8080" 
+    depends_on:
+      - mongodb
+    environment:
+      - ASPNETCORE_URLS=http://+:8080
+    networks:
+      - app-network
+
+  influxdb:
+    image: influxdb:1.8
+    container_name: influxdb
+    ports:
+      - "8086:8086"
+    environment:
+      - INFLUXDB_DB=prometheus
+      - INFLUXDB_HTTP_AUTH_ENABLED=false
+      - INFLUXDB_ADMIN_USER=admin
+      - INFLUXDB_ADMIN_PASSWORD=password123
+    volumes:
+      - influx_data:/var/lib/influxdb
+    restart: always
+    networks:
+      - app-network
+
+  victoriametrics:
+    image: victoriametrics/victoria-metrics:v1.90.0
+    container_name: victoriametrics
+    ports:
+      - "8428:8428"
+    volumes:
+      - vm_data:/storage
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - "--storageDataPath=/storage"
+      - "--httpListenAddr=:8428"
+      - "--promscrape.config=/etc/prometheus/prometheus.yml"
+      - "--promscrape.configCheckInterval=1s"
+      - "--search.latencyOffset=0s"
+      - "--import.maxLineLen=100MB"
+      - "--cacheExpireDuration=10s"
+    restart: always
+    networks:
+      - app-network
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=mongouserdatabase
+      - MONGO_INITDB_ROOT_PASSWORD=chrmd2025
+      - MONGO_INITDB_DATABASE=admin
+    volumes:
+      - ~/docker:/data/db
+    restart: always
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  influx_data:
+  vm_data:
+  mongodata:
+  mongoconfig:
