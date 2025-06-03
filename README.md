@@ -25,8 +25,7 @@ The backend has two basic routes:
 
 The metrics platform also provides a [graphical portal](http://localhost:8428/vmui) for detailed queries of all metrics. Over 300 metrics are collected and can be queried through the [endpoint](http://localhost:9090/metrics).
 
-> [!IMPORTANT]
-> Only the movies route is being monitored by metrics.
+
 
 ## Architecture & Design
 
@@ -103,18 +102,10 @@ Error responses include appropriate HTTP status codes and descriptive messages:
 ```bash
 # Run backend tests
 dotnet test
-
-# Run frontend tests
-npm test
-
-# Run integration tests
-docker-compose -f docker-compose.test.yml up --abort-on-container-exit
 ```
 
 ### Test Coverage
-- Unit tests cover business logic and data access layers
-- Integration tests validate API endpoints
-- Frontend tests include component and user interaction testing
+- Unit tests cover business logic 
 
 ## Monitoring & Observability
 
@@ -126,6 +117,11 @@ The application presents some metrics for this exam:
 - [Statistics by time](http://localhost:9090/api/movies/stats/hourly)
 - [Top Searches](http://localhost:9090/api/movies/stats/top-searches)
 - [Status codes distribution](http://localhost:9090/api/movies/stats/status-codes)
+
+The application will reset the metrics every 5 minutes.
+
+> [!IMPORTANT]
+> Only the movies route is being monitored by metrics.
 
 ### Health Checks
 - [Application Health](http://localhost:9090/api/people/health)
