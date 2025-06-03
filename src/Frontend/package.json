@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "react-router-dom": "^7.6.1",
+    "react-swapi": "^1.0.1"
+  }
+}
