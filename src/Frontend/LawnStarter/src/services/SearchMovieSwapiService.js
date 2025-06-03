@@ -1,11 +1,12 @@
-const SWAPI_URL = 'http://localhost:8080/api';
+const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:9090/api';
+
 
 export const SearchMovieSwapiService = async (id) => {
     if (!id) {
         return null;
     }
 
-    const url = `${SWAPI_URL}/movies/${id}`;
+    const url = `${BACKEND_URL}/movies/${id}`;
 
     try {
         const response = await fetch(url);

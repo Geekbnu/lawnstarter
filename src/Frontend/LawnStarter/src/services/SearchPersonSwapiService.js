@@ -1,11 +1,11 @@
-const SWAPI_URL = 'http://localhost:8080/api';
+const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:9090/api';
 
 export const SearchPersonSwapiService = async (id) => {
     if (!id) {
         return null;
     }
 
-    const url = `${SWAPI_URL}/people/${id}`;
+    const url = `${BACKEND_URL}/people/${id}`;
 
     try {
         const response = await fetch(url);

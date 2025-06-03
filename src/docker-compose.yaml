@@ -4,9 +4,13 @@ services:
       context: ./Frontend  
       dockerfile: Dockerfile 
     ports:
-      - "3000:80"          
-    container_name: SWStarter-Frontend 
+      - "8080:80"
+    depends_on:
+      - backend          
+    container_name: Frontend 
     restart: unless-stopped
+    environment:
+      - BACKEND_URL=http://localhost:9090/api
     networks:
       - app-network
   
@@ -15,11 +19,16 @@ services:
       context: ./Backend
       dockerfile: ./StarWarsAPI/StarWars.API/Dockerfile
     ports:
-      - "8080:8080" 
+      - "9090:8080"
+    expose:
+      - "9090"
     depends_on:
       - mongodb
     environment:
       - ASPNETCORE_URLS=http://+:8080
+      - METRICS_URL=http://victoriametrics:8428
+    container_name: Backend
+    restart: unless-stopped
     networks:
       - app-network
 
@@ -44,6 +53,10 @@ services:
     container_name: victoriametrics
     ports:
       - "8428:8428"
+    expose:
+      - "8428"
+    depends_on:
+      - backend
     volumes:
       - vm_data:/storage
       - ./prometheus.yml:/etc/prometheus/prometheus.yml

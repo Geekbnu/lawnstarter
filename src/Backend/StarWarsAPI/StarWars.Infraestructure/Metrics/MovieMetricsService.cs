@@ -25,7 +25,7 @@ namespace StarWarsApi.Metric
             _httpClient = httpClientFactory.CreateClient();
             _logger = logger;
             InitializeMetrics();
-            _victoriaMetricsUrl = configuration["Metrics:VictoriaMetrics:Url"] ?? "http://localhost:8428";
+            _victoriaMetricsUrl = Environment.GetEnvironmentVariable("METRICS_URL") ?? configuration["Metrics:VictoriaMetrics:Url"];
         }
 
         private void InitializeMetrics()
